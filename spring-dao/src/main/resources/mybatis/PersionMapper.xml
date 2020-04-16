@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.mapper.PersionMapper">
+    <resultMap id="BaseResultMap" type="com.demo.entity.PersionInfoEntity" >
+        <result column="name" property="name" />
+        <result column="password" property="password" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                name,
+                password
+    </sql>
+
+    <insert id="insert"  parameterType="com.demo.entity.PersionInfoEntity">
+        INSERT INTO family_bucket
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != name'>
+                name,
+            </if>
+            <if test ='null != password'>
+                password
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != name'>
+                #{name},
+            </if>
+            <if test ='null != password'>
+                #{password}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM family_bucket
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.demo.entity.PersionInfoEntity">
+        UPDATE family_bucket
+        <set>
+            <if test ='null != name'>name = #{name},</if>
+            <if test ='null != password'>password = #{password}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="load" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM family_bucket
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM family-bucket
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM family_bucket
+    </select>
+
+</mapper>
