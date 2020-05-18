@@ -3,6 +3,7 @@ package com.demo.mapper;
 
 import com.demo.entity.PersionInfoEntity;
 //import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 /**
