@@ -7,6 +7,8 @@
         <module>spring-dao</module>
         <module>spring-web</module>
         <module>spring-service</module>
+        <module>oauth2-client</module>
+        <module>security-oauth2-ahtuorization</module>
     </modules>
 
     <parent>
